@@ -2,5 +2,124 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "skill-matcher": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/skill-matcher",
+      "sourceRoot": "projects/skill-matcher/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/skill-matcher",
+            "index": "projects/skill-matcher/src/index.html",
+            "main": "projects/skill-matcher/src/main.ts",
+            "polyfills": "projects/skill-matcher/src/polyfills.ts",
+            "tsConfig": "projects/skill-matcher/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/skill-matcher/src/favicon.ico",
+              "projects/skill-matcher/src/assets"
+            ],
+            "styles": [
+              "projects/skill-matcher/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/skill-matcher/src/environments/environment.ts",
+                  "with": "projects/skill-matcher/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "skill-matcher:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "skill-matcher:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "skill-matcher:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/skill-matcher/src/test.ts",
+            "polyfills": "projects/skill-matcher/src/polyfills.ts",
+            "tsConfig": "projects/skill-matcher/tsconfig.spec.json",
+            "karmaConfig": "projects/skill-matcher/karma.conf.js",
+            "assets": [
+              "projects/skill-matcher/src/favicon.ico",
+              "projects/skill-matcher/src/assets"
+            ],
+            "styles": [
+              "projects/skill-matcher/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/skill-matcher/tsconfig.app.json",
+              "projects/skill-matcher/tsconfig.spec.json",
+              "projects/skill-matcher/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/skill-matcher/e2e/protractor.conf.js",
+            "devServerTarget": "skill-matcher:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "skill-matcher:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ch01"
 }

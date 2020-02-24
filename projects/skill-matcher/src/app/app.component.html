@@ -1,0 +1,23 @@
+<h2 class="display-4">Developers</h2>
+<table class="table">
+  <tbody>
+    <tr *ngFor="let developer of developers">
+      <td>{{ developer.firstName }}</td>
+      <td>{{ developer.lastName }}</td>
+      <td>{{ developer.email }}</td>
+      <td>{{ developer.skills | skills }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="display-4">Projects</h2>
+<table class="table">
+  <tbody>
+  <tr *ngFor="let project of projects">
+    <td>{{ project.name }}</td>
+    <td>{{ project.requiredSkills | skills }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>
